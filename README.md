@@ -46,7 +46,10 @@ Install packages
 
 ### NvChad
 
-Install
+[Install](https://nvchad.com/docs/quickstart/install)
+
+- Neovim
+- RipGrep (optionall)
 
 ## Lazy Git
 
@@ -67,7 +70,7 @@ quitOnTopLevelReturn: true
 ## Config
 
 Once everthing is installed, run this for custom config.
-You may need to isntall `stow`.
+You may need to install `stow`.
 
 ```bash
 git clone https://github.com/drer17/dotfiles.git ~/dotfiles
