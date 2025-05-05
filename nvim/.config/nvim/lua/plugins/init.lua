@@ -40,6 +40,7 @@ return {
         "codelldb",
         "eslint-lsp",
         "prisma-language-server",
+        "clangd",
       },
     },
   },
