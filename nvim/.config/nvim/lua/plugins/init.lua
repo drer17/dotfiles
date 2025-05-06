@@ -30,6 +30,7 @@ return {
         "html-lsp",
         "css-lsp",
         "prettierd",
+        "biome",
         "pyright",
         "isort",
         "black",

@@ -2,14 +2,14 @@ local options = {
   formatters_by_ft = {
     lua = { "stylua" },
     python = { "black", "isort" },
-    javascript = { "prettier" },
     css = { "prettier" },
     html = { "prettier" },
-    json = { "prettier" },
     yaml = { "prettier" },
     markdown = { "prettier" },
-    typescriptreact = { "prettier" },
-    typescript = { "prettier" },
+    javascript = { "biome" },
+    json = { "biome" },
+    typescriptreact = { "biome" },
+    typescript = { "biome" },
   },
   format_on_save = {
     -- These options will be passed to conform.format()
