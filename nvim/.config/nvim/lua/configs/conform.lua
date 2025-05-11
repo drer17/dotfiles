@@ -6,10 +6,10 @@ local options = {
     html = { "prettier" },
     yaml = { "prettier" },
     markdown = { "prettier" },
-    javascript = { "biome" },
     json = { "biome" },
-    typescriptreact = { "biome" },
-    typescript = { "biome" },
+    javascript = { "prettier" },
+    typescriptreact = { "prettier" },
+    typescript = { "prettier" },
   },
   format_on_save = {
     -- These options will be passed to conform.format()
