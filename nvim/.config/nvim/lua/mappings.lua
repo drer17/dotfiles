@@ -76,4 +76,6 @@ map("n", "<leader>te", function()
   end
 end, { desc = "Insert contents of `.template`" })
 
+map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open diagnostics" })
+
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
