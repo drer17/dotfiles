@@ -213,4 +213,16 @@ return {
       { "nvim-telescope/telescope.nvim" },
     },
   },
+  {
+    "stevearc/aerial.nvim",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+    event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+    opts = {
+      attach_mode = "global",
+      show_guides = true,
+    },
+  },
 }

@@ -165,7 +165,7 @@ esac
 
 # cloc
 loc() {
-  cloc . --exclude_dir=node_modules,target --not-match-f='\.yaml$|\.html$|\.json$|\.svg$'
+  cloc . --exclude_dir=node_modules,target,dist --not-match-f='\.yaml$|\.html$|\.json$|\.svg$|\.js$'
 }
 # cloc end
 

@@ -78,4 +78,6 @@ end, { desc = "Insert contents of `.template`" })
 
 map("n", "<leader>e", vim.diagnostic.open_float, { desc = "Open diagnostics" })
 
+map("n", "<leader>a", "<cmd>AerialToggle!<CR>", { desc = "Toggle Aerial outline" })
+
 -- map({ "n", "i", "v" }, "<C-s>", "<cmd> w <cr>")
