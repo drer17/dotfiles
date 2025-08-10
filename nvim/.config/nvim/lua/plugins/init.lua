@@ -218,6 +218,7 @@ return {
     },
     event = { "BufReadPost", "BufWritePost", "BufNewFile" },
     opts = {
+      show_line_numbers = true,
       attach_mode = "global",
       show_guides = true,
     },

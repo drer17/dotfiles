@@ -125,7 +125,11 @@ convert_to_pdf() {
 	output_file="${input_file%.md}.pdf"
 	template_file="~/Documents/templates/custom_basic"
 	
-	pandoc "$input_file" -o "$output_file" --filter pandoc-eqnos --pdf-engine=xelatex --listings
+	pandoc "$input_file" -o "$output_file" \
+    --template="$template_file" \
+    --filter pandoc-eqnos \
+    --pdf-engine=xelatex \
+    --listings
 }
 
 # >>> conda initialize >>>
