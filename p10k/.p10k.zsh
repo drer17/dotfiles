@@ -100,6 +100,9 @@
   typeset -g POWERLEVEL9K_VIRTUALENV_SHOW_PYTHON_VERSION=false
   typeset -g POWERLEVEL9K_VIRTUALENV_{LEFT,RIGHT}_DELIMITER=
 
+  typeset -g POWERLEVEL9K_SHORTEN_DIR_LENGTH=3
+  typeset -g POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_left"#
+
   # Blue current directory.
   typeset -g POWERLEVEL9K_DIR_FOREGROUND=$blue
 
