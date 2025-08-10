@@ -172,4 +172,4 @@ loc() {
 # >>> SHORTCUTS >>>
 export PROJECTS=~/Documents/projects/
 # <<< SHORTCUTS <<<
-source ~/.exports.sh
+# source ~/.exports.sh

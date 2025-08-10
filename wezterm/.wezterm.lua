@@ -30,5 +30,7 @@ config.window_decorations = "RESIZE"
 config.window_background_opacity = 1
 config.macos_window_background_blur = 25
 
+config.window_close_confirmation = "NeverPrompt"
+
 -- and finally, return the configuration to wezterm
 return config

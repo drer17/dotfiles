@@ -13,11 +13,7 @@ return {
       require "configs.lspconfig"
     end,
     opts = {
-      setup = {
-        rust_analyzer = function()
-          return true
-        end,
-      },
+      setup = {},
     },
   },
   {
@@ -42,6 +38,7 @@ return {
         "eslint-lsp",
         "prisma-language-server",
         "clangd",
+        "rust_analyzer",
       },
     },
   },
@@ -79,7 +76,7 @@ return {
   },
   {
     "mrcjkb/rustaceanvim",
-    version = "^5",
+    version = "6",
     lazy = false,
   },
   {
