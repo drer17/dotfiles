@@ -10,6 +10,15 @@ local options = {
     javascript = { "prettier" },
     typescriptreact = { "prettier" },
     typescript = { "prettier" },
+    sql = { "sqruff" },
+  },
+  formatter_opts = {
+    sqruff = {
+      extra_args = {
+        "--indent",
+        "2",
+      },
+    },
   },
   format_on_save = {
     -- These options will be passed to conform.format()

@@ -15,6 +15,7 @@ local servers = {
   "docker_compose_language_service",
   "texlab",
   "buf_ls",
+  "sqls",
 }
 local nvlsp = require "nvchad.configs.lspconfig"
 
@@ -33,5 +34,10 @@ lspconfig.clangd.setup {
   on_init = nvlsp.on_init,
   capabilities = nvlsp.capabilities,
   filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
-  cmd = { vim.fn.expand("$CLANG_TOOLS") .. "/bin/clangd", "--enable-config", "--clang-tidy", "--compile-commands-dir=build" }
+  cmd = {
+    vim.fn.expand "$CLANG_TOOLS" .. "/bin/clangd",
+    "--enable-config",
+    "--clang-tidy",
+    "--compile-commands-dir=build",
+  },
 }

@@ -39,6 +39,8 @@ return {
         "prisma-language-server",
         "clangd",
         "rust_analyzer",
+        "sqruff",
+        "sqls",
       },
     },
   },
