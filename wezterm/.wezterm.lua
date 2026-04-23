@@ -11,7 +11,7 @@ local dark = wezterm.gui.get_appearance():find("Dark")
 -- my coolnight colorscheme
 config.colors = {
 	foreground = dark and "#CBE0F0" or "#1c1917",
-	background = dark and "#1c1917" or "#e7e5e4",
+	background = dark and "#030712" or "#e7e5e4",
 	cursor_bg = "#7dd3fc",
 	cursor_border = "#7dd3fc",
 	cursor_fg = "#011423",
@@ -28,7 +28,7 @@ config.enable_tab_bar = false
 
 config.window_decorations = "RESIZE"
 config.window_background_opacity = 1
-config.macos_window_background_blur = 25
+config.macos_window_background_blur = 50
 
 config.window_close_confirmation = "NeverPrompt"
 

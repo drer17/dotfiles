@@ -11,13 +11,12 @@ local options = {
     typescriptreact = { "prettier" },
     typescript = { "prettier" },
     sql = { "sqruff" },
+    toml = { "taplo" },
+    -- cargo install --git https://github.com/wgsl-analyzer/wgsl-analyzer wgslfmt
   },
-  formatter_opts = {
+  formatters = {
     sqruff = {
-      extra_args = {
-        "--indent",
-        "2",
-      },
+      args = { "fix", "--dialect", "sqlite" },
     },
   },
   format_on_save = {

@@ -177,3 +177,13 @@ loc() {
 export PROJECTS=~/Documents/projects/
 # <<< SHORTCUTS <<<
 # source ~/.exports.sh
+
+alias gg="lazygit"
+alias nv="nvim"
+export PATH="/usr/local/texlive/2025/bin/universal-darwin:$PATH"
+
+export VCPKG_ROOT=~/Documents/projects/simcpp/Thirdparty/vcpkg
+export PATH=$VCPKG_ROOT:$PATH
+export PATH="$HOME/.local/bin:$PATH"
+
+alias bts="$HOME/Documents/services/bootstrapper/target/release/bootstrapper"

@@ -41,6 +41,9 @@ return {
         "rust_analyzer",
         "sqruff",
         "sqls",
+        "codelldb",
+        "wgsl_analyzer",
+        "taplo",
       },
     },
   },
@@ -57,6 +60,7 @@ return {
         "rust",
         "toml",
         "tsx",
+        "wgsl",
       },
     },
   },
@@ -83,20 +87,13 @@ return {
   },
   {
     "mfussenegger/nvim-dap",
-    config = function(_, opts)
-      -- require("core.utils").load_mappings "dap"
+    config = function(_, _)
       local dap = require "dap"
-
-      dap.adapters.lldb = {
-        type = "executable",
-        command = "/usr/bin/lldb",
-        name = "lldb",
-      }
 
       dap.configurations.rust = {
         {
-          name = "main",
-          type = "lldb",
+          name = "Debug Test",
+          type = "codelldb",
           request = "launch",
           program = function()
             local cwd = vim.fn.getcwd()
@@ -106,7 +103,7 @@ return {
           end,
           cwd = "${workspaceFolder}",
           stopOnEntry = false,
-          args = {},
+          args = { "--no-capture" },
           console = "integratedTerminal",
           runInTerminal = false,
         },
@@ -140,7 +137,7 @@ return {
       "rcarriga/nvim-dap-ui",
       "nvim-neotest/nvim-nio",
     },
-    config = function(_, opts)
+    config = function(_, _)
       local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
       require("dap-python").setup(path)
 

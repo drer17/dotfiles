@@ -16,6 +16,7 @@ local servers = {
   "texlab",
   "buf_ls",
   "sqls",
+  "wgsl_analyzer",
 }
 local nvlsp = require "nvchad.configs.lspconfig"
 
@@ -35,9 +36,20 @@ lspconfig.clangd.setup {
   capabilities = nvlsp.capabilities,
   filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
   cmd = {
-    vim.fn.expand "$CLANG_TOOLS" .. "/bin/clangd",
+    "clangd",
     "--enable-config",
     "--clang-tidy",
     "--compile-commands-dir=build",
   },
+}
+
+lspconfig.sourcekit.setup {
+  cmd = { "xcrun", "sourcekit-lsp" },
+  filetypes = { "swift" },
+
+  root_dir = require("lspconfig.util").root_pattern("Iro.xcodeproj", "Package.swift"),
+
+  capabilities = nvlsp.capabilities,
+  on_attach = nvlsp.on_attach,
+  on_init = nvlsp.on_init,
 }
