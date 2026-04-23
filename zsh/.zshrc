@@ -187,3 +187,9 @@ export PATH=$VCPKG_ROOT:$PATH
 export PATH="$HOME/.local/bin:$PATH"
 
 alias bts="$HOME/Documents/services/bootstrapper/target/release/bootstrapper"
+# bun completions
+[ -s "/Users/andrerepanich/.bun/_bun" ] && source "/Users/andrerepanich/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"

@@ -33,7 +33,10 @@ for _, server in ipairs(servers) do
 end
 
 -- C/C++ & CUDA (clangd)
-vim.lsp.config.clangd = {
+vim.lsp.config("clangd", {
+  on_attach = opts.on_attach,
+  on_init = opts.on_init,
+  capabilities = opts.capabilities,
   filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
   cmd = {
     "clangd",
@@ -41,31 +44,5 @@ vim.lsp.config.clangd = {
     "--clang-tidy",
     "--compile-commands-dir=build",
   },
-  on_attach = nvlsp.on_attach,
-  on_init = nvlsp.on_init,
-  capabilities = nvlsp.capabilities,
-}
+})
 vim.lsp.enable "clangd"
-
--- swift ui
-vim.lsp.config.sourcekit_lsp = {
-  cmd = { "xcrun", "sourcekit-lsp" },
-  filetypes = { "swift", "objc", "objcpp", "c", "cpp" },
-
-  on_attach = nvlsp.on_attach,
-  on_init = nvlsp.on_init,
-  capabilities = nvlsp.capabilities,
-
-  root_dir = function(bufnr, on_dir)
-    local util = require "lspconfig.util"
-    local filename = vim.api.nvim_buf_get_name(bufnr)
-
-    on_dir(
-      util.root_pattern("buildServer.json", ".bsp")(filename)
-        or util.root_pattern(".xcodeproj", ".xcworkspace")(filename)
-        or util.root_pattern("compile_commands.json", "Package.swift")(filename)
-        or util.find_git_ancestor(filename)
-    )
-  end,
-}
-vim.lsp.enable "sourcekit_lsp"
