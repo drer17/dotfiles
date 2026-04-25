@@ -46,3 +46,14 @@ vim.lsp.config("clangd", {
   },
 })
 vim.lsp.enable "clangd"
+
+-- swift ui
+vim.lsp.config("sourcekit", {
+  cmd = { "xcrun", "sourcekit-lsp" },
+  filetypes = { "swift" },
+  root_dir = require("lspconfig.util").root_pattern("*.xcodeproj", "Package.swift"),
+  on_attach = opts.on_attach,
+  on_init = opts.on_init,
+  capabilities = opts.capabilities,
+})
+vim.lsp.enable "sourcekit"
