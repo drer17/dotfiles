@@ -12,9 +12,6 @@ return {
       require("nvchad.configs.lspconfig").defaults()
       require "configs.lspconfig"
     end,
-    opts = {
-      setup = {},
-    },
   },
   {
     "williamboman/mason.nvim",
@@ -34,7 +31,6 @@ return {
         "python-lsp-server",
         "typescript-language-server",
         "tailwindcss-language-server",
-        "codelldb",
         "eslint-lsp",
         "prisma-language-server",
         "clangd",
@@ -46,6 +42,7 @@ return {
         "taplo",
       },
     },
+    automatic_installation = true,
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -61,6 +58,7 @@ return {
         "toml",
         "tsx",
         "wgsl",
+        "swift",
       },
     },
   },
