@@ -40,6 +40,7 @@ return {
         "codelldb",
         "wgsl_analyzer",
         "taplo",
+        "ruff",
       },
     },
     automatic_installation = true,
@@ -206,6 +207,16 @@ return {
     requires = {
       { "nvim-telescope/telescope.nvim" },
     },
+  },
+  {
+    "kevalin/mermaid.nvim",
+    ft = { "mermaid", "markdown" },
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+    },
+    config = function()
+      require("mermaid").setup()
+    end,
   },
   {
     "stevearc/aerial.nvim",
