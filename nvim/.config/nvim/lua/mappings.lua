@@ -5,28 +5,27 @@ require "nvchad.mappings"
 local map = vim.keymap.set
 
 map("n", ";", ":", { desc = "CMD enter command mode" })
-map("i", "jk", "<ESC>")
+map("i", "jk", "<ESC>", { desc = "Exit insert mode" })
 
-map("n", "<leader>wf", "<C-w>| <C-w>_")
+map("n", "<leader>wf", "<C-w>|<C-w>_", { desc = "Maximize window" })
 
-map("n", "<leader><F8>", "<cmd> DapToggleBreakpoint <CR>")
+map("n", "<leader><F8>", "<cmd>DapToggleBreakpoint<CR>", { desc = "Debug toggle breakpoint" })
 map("n", "<leader><F5>", function()
-  require "dap-python"
   vim.cmd "DapNew"
-end)
-map("n", "<leader><F10>", "<cmd> DapStepOver <CR>")
-map("n", "<leader><F9>", "<cmd> DapStepInto <CR>")
-map("n", "<leader>dc", "<cmd> DapContinue <CR>")
-map("n", "<leader>dr", "<cmd> DapRestart <CR>")
-map("n", "<leader>dq", "<cmd> DapTerminate <CR>")
+end, { desc = "Debug new session" })
+map("n", "<leader><F10>", "<cmd>DapStepOver<CR>", { desc = "Debug step over" })
+map("n", "<leader><F9>", "<cmd>DapStepInto<CR>", { desc = "Debug step into" })
+map("n", "<leader>dc", "<cmd>DapContinue<CR>", { desc = "Debug continue" })
+map("n", "<leader>dr", "<cmd>DapRestart<CR>", { desc = "Debug restart" })
+map("n", "<leader>dq", "<cmd>DapTerminate<CR>", { desc = "Debug terminate" })
 map("n", "<leader>dw", function()
   require("dapui").open { reset = true }
-end)
+end, { desc = "Debug open UI" })
 
 map("n", "<leader>g", function()
   require "lazygit"
   vim.cmd "LazyGit"
-end)
+end, { desc = "Open LazyGit" })
 
 map("n", "<leader>rn", function()
   local arg = vim.fn.input "Enter argument: "
@@ -36,43 +35,43 @@ map("n", "<leader>rn", function()
   else
     print "No argument provided."
   end
-end)
+end, { desc = "LSP incremental rename" })
 
 map("x", "<leader>re", function()
   require("refactoring").refactor "Extract Function"
-end)
+end, { desc = "Refactor extract function" })
 map("x", "<leader>rf", function()
   require("refactoring").refactor "Extract Function To File"
-end)
+end, { desc = "Refactor extract function to file" })
 -- Extract function supports only visual mode
 map("x", "<leader>rv", function()
   require("refactoring").refactor "Extract Variable"
-end)
+end, { desc = "Refactor extract variable" })
 -- Extract variable supports only visual mode
 map("n", "<leader>rI", function()
   require("refactoring").refactor "Inline Function"
-end)
+end, { desc = "Refactor inline function" })
 -- Inline func supports only normal
 map({ "n", "x" }, "<leader>ri", function()
   require("refactoring").refactor "Inline Variable"
-end)
+end, { desc = "Refactor inline variable" })
 -- Inline var supports both normal and visual mode
 
 map("n", "<leader>rb", function()
   require("refactoring").refactor "Extract Block"
-end)
+end, { desc = "Refactor extract block" })
 map("n", "<leader>rbf", function()
   require("refactoring").refactor "Extract Block To File"
-end)
+end, { desc = "Refactor extract block to file" })
 
 map("n", "<leader>te", function()
   local ext = vim.fn.expand "%:e"
   local template = "./.template"
 
   if vim.fn.filereadable(template) == 1 then
-    vim.cmd("0r " .. template)
+    vim.api.nvim_buf_set_lines(0, 0, 0, false, vim.fn.readfile(template))
   else
-    vim.cmd("No template found for ." .. ext)
+    vim.notify("No template found for ." .. ext, vim.log.levels.WARN)
   end
 end, { desc = "Insert contents of `.template`" })
 

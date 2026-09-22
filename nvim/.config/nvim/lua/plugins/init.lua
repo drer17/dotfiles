@@ -9,41 +9,46 @@ return {
   {
     "neovim/nvim-lspconfig",
     config = function()
-      require("nvchad.configs.lspconfig").defaults()
       require "configs.lspconfig"
     end,
   },
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
+  },
+  {
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+    lazy = false,
+    dependencies = { "mason-org/mason.nvim" },
     opts = {
       ensure_installed = {
-        "debugpy",
-        "lua-language-server",
-        "stylua",
-        "html-lsp",
-        "css-lsp",
-        "prettierd",
         "biome",
-        "pyright",
-        "isort",
         "black",
-        "ruff",
-        "python-lsp-server",
-        "typescript-language-server",
-        "tailwindcss-language-server",
-        "eslint-lsp",
-        "prisma-language-server",
         "clangd",
-        "rust_analyzer",
-        "sqruff",
-        "sqls",
-        "codelldb",
-        "wgsl_analyzer",
-        "taplo",
+        "css-lsp",
+        "debugpy",
+        "docker-compose-language-service",
+        "dockerfile-language-server",
+        "eslint-lsp",
+        "html-lsp",
+        "isort",
+        "kotlin-lsp",
+        "ktfmt",
+        "lua-language-server",
+        "prettier",
+        "prisma-language-server",
+        "pyright",
         "ruff",
+        "stylua",
+        "tailwindcss-language-server",
+        "taplo",
+        "texlab",
+        "typescript-language-server",
+        "wgsl-analyzer",
+        "xmlformatter",
       },
+      auto_update = false,
+      run_on_start = true,
     },
-    automatic_installation = true,
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -70,6 +75,9 @@ return {
         enable = true,
         ignore = false,
       },
+      renderer = {
+        group_empty = true,
+      },
     },
   },
   {
@@ -81,38 +89,19 @@ return {
   },
   {
     "mrcjkb/rustaceanvim",
-    version = "6",
+    version = "^9",
     lazy = false,
   },
   {
     "mfussenegger/nvim-dap",
-    config = function(_, _)
-      local dap = require "dap"
-
-      dap.configurations.rust = {
-        {
-          name = "Debug Test",
-          type = "codelldb",
-          request = "launch",
-          program = function()
-            local cwd = vim.fn.getcwd()
-            local project_name = vim.fn.fnamemodify(cwd, ":t")
-            return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/target/debug/" .. project_name)
-            -- return cwd .. "/target/debug/" .. project_name
-          end,
-          cwd = "${workspaceFolder}",
-          stopOnEntry = false,
-          args = { "--no-capture" },
-          console = "integratedTerminal",
-          runInTerminal = false,
-        },
-      }
-    end,
   },
   {
     "rcarriga/nvim-dap-ui",
-    lazy = false,
-    dependencies = "mfussenegger/nvim-dap",
+    event = "VeryLazy",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "nvim-neotest/nvim-nio",
+    },
     config = function()
       local dap = require "dap"
       local dapui = require "dapui"
@@ -134,10 +123,9 @@ return {
     dependencies = {
       "mfussenegger/nvim-dap",
       "rcarriga/nvim-dap-ui",
-      "nvim-neotest/nvim-nio",
     },
-    config = function(_, _)
-      local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
+    config = function()
+      local path = vim.fn.stdpath "data" .. "/mason/packages/debugpy/venv/bin/python"
       require("dap-python").setup(path)
 
       local dap = require "dap"
@@ -204,9 +192,7 @@ return {
   },
   {
     "lukahartwig/pnpm.nvim",
-    requires = {
-      { "nvim-telescope/telescope.nvim" },
-    },
+    dependencies = { "nvim-telescope/telescope.nvim" },
   },
   {
     "kevalin/mermaid.nvim",

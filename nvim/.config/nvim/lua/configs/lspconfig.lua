@@ -1,14 +1,3 @@
--- load NvChad defaults
-local nvlsp = require "nvchad.configs.lspconfig"
-nvlsp.defaults()
-
--- common options
-local opts = {
-  on_attach = nvlsp.on_attach,
-  on_init = nvlsp.on_init,
-  capabilities = nvlsp.capabilities,
-}
-
 -- servers list
 local servers = {
   "html",
@@ -21,22 +10,16 @@ local servers = {
   "dockerls",
   "docker_compose_language_service",
   "texlab",
-  "buf_ls",
-  "sqls",
   "wgsl_analyzer",
 }
 
 -- setup servers
 for _, server in ipairs(servers) do
-  vim.lsp.config(server, opts)
   vim.lsp.enable(server)
 end
 
 -- C/C++ & CUDA (clangd)
 vim.lsp.config("clangd", {
-  on_attach = opts.on_attach,
-  on_init = opts.on_init,
-  capabilities = opts.capabilities,
   filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
   cmd = {
     "clangd",
@@ -47,13 +30,19 @@ vim.lsp.config("clangd", {
 })
 vim.lsp.enable "clangd"
 
--- swift ui
+-- Swift
 vim.lsp.config("sourcekit", {
   cmd = { "xcrun", "sourcekit-lsp" },
-  filetypes = { "swift" },
-  root_dir = require("lspconfig.util").root_pattern("*.xcodeproj", "Package.swift"),
-  on_attach = opts.on_attach,
-  on_init = opts.on_init,
-  capabilities = opts.capabilities,
 })
 vim.lsp.enable "sourcekit"
+
+-- Kotlin/Android development
+local android_jdk = "/Applications/Android Studio.app/Contents/jbr/Contents/Home"
+
+vim.lsp.config("kotlin_lsp", {
+  cmd_env = {
+    JAVA_HOME = android_jdk,
+    PATH = android_jdk .. "/bin:" .. vim.env.PATH,
+  },
+})
+vim.lsp.enable "kotlin_lsp"
