@@ -1,3 +1,7 @@
+-- Load NvChad's LSP defaults, including buffer-local LSP mappings.
+local nvlsp = require "nvchad.configs.lspconfig"
+nvlsp.defaults()
+
 -- servers list
 local servers = {
   "html",
